@@ -1,0 +1,2 @@
+Github : https://github.com/abhijeet3922/Topic-Modelling-on-Wiki-corpus/tree/master
+Link tuto : https://appliedmachinelearning.wordpress.com/2017/08/28/topic-modelling-part-1-creating-article-corpus-from-simple-wikipedia-dump/
