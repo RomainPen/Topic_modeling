@@ -1,0 +1,10 @@
+ipython
+streamlit
+pandas
+pickle5
+datetime
+matplotlib
+re
+nltk
+string
+operator
