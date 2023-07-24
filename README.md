@@ -1,6 +1,6 @@
 # Topic_modeling
 
-# Part 1 :
+## Part 1 :
 ### Extract data :
 - 0/ Create empty df
 - 1/ Extract corpus (Web scrapping on XML) and 1st article cleaning (regex)
@@ -8,8 +8,7 @@
 
 
 
-
-# Part 2 :
+## Part 2 :
 ### Pre-processing :
 - 0/ Open dataset
 - 1/ Select data for training (aka, training dataset)
@@ -36,8 +35,7 @@
 
 
 
-
-# Part 3 :
+## Part 3 :
 ### Load the LDA model :
 
 
