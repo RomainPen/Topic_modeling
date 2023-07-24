@@ -1,0 +1,5 @@
+1 : Create the bucket in "google cloud storage"
+
+2 : Import data from link with "google cloud storage" to my bucket (terminal : curl "data link" (https://dumps.wikimedia.org/enwiki/20230620/enwiki-20230620-pages-articles-multistream1.xml-p1p41242.bz2) | gsutil cp - "storage name" (gs://wikimediatide/wikidata_test.xml-p1p41242.bz2)
+
+3 : Decompresse data with "dataflow" (follow the procedure : https://cloud.google.com/dataflow/docs/guides/templates/provided/bulk-decompress-cloud-storage?hl=fr#console)
