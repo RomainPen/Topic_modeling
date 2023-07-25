@@ -205,16 +205,17 @@ def Theme_extraction(article) :
 
 
 
-# Title :
-st.title('Topic modeling :')
 
-# Image :
-st.image(image, caption='Topic modeling schema')
 
 
 tab1, tab2= st.tabs(["Dataset clusturing and theme analysis", "Theme extraction"])
 
 def main():
+    # Title :
+    st.title('Topic modeling :')
+
+    # Image :
+    st.image(image, caption='Topic modeling schema')
     
     with tab1 :
         st.header("Dataset clusturing and theme analysis")
