@@ -192,15 +192,16 @@ def cluster_similar_documents(doc):
     return pd.Series([theme, theme_proba])
 
 
-def Theme_extraction(article) :
-    return {"Topic" : cluster_similar_documents(article)[0], 
-            "Topic proba" : round(cluster_similar_documents(article)[1], 3)}
-
 #download data as csv :
 @st.cache_data
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv().encode('utf-8')
+
+
+def Theme_extraction(article) :
+    return {"Topic" : cluster_similar_documents(article)[0], 
+            "Topic proba" : round(cluster_similar_documents(article)[1], 3)}
 
 
 def main():
@@ -210,37 +211,43 @@ def main():
     # Image :
     st.image(image, caption='Topic modeling schema')
     
-    # Import corpus CSV :
-    uploaded_file = st.file_uploader("Choose a file (only accept .csv)")
-    if uploaded_file is not None :
-        df_corpus_test = pd.read_csv(uploaded_file)
-        # Give column of articles name :
-        article_col = st.text_input('Articles column name', 'Article')
-        try :
-            df_corpus_test[["topic", "topic_proba"]] = df_corpus_test[article_col].apply(lambda corpus : cluster_similar_documents(corpus))
-        except KeyError :
-            st.write("This column doesn't exist")
+    tab1, tab2= st.tabs(["Dataset clusturing and theme analysis", "Theme extraction"])
+    
+    with tab1 :
+        st.header("Dataset clusturing and theme analysis")
+        # Import corpus CSV :
+        uploaded_file = st.file_uploader("Choose a file (only accept .csv)")
+        if uploaded_file is not None :
+            df_corpus_test = pd.read_csv(uploaded_file)
+            # Give column of articles name :
+            article_col = st.text_input('Articles column name', 'Article')
+            try :
+                df_corpus_test[["topic", "topic_proba"]] = df_corpus_test[article_col].apply(lambda corpus : cluster_similar_documents(corpus))
+            except KeyError :
+                st.write("This column doesn't exist")
+            
+            # Analyse the result of the clustering
+            nb_of_article = pd.DataFrame(df_corpus_test['topic'].value_counts()).rename(columns={"topic": "nb_of_article"})
+            st.dataframe(nb_of_article)
+            
+            #download dat as csv :
+            csv = convert_df(nb_of_article)
+            st.download_button(
+                label="Download data as CSV",
+                data=csv,
+                file_name='topic_analysis.csv',
+                mime='text/csv')
         
-        # Analyse the result of the clustering
-        nb_of_article = pd.DataFrame(df_corpus_test['topic'].value_counts()).rename(columns={"topic": "nb_of_article"})
-        st.dataframe(nb_of_article)
-        
-        #download dat as csv :
-        csv = convert_df(nb_of_article)
-        st.download_button(
-            label="Download data as CSV",
-            data=csv,
-            file_name='topic_analysis.csv',
-            mime='text/csv')
-        
-
-
-    # Predict topic from an article :
-    article = st.text_area(label='Wikipedia article to analyze', value="Wikipedia article", height=20)
-    if article is not None :
-        if st.button('Find topic'):
-            st.metric("Topic", Theme_extraction(article)["Topic"])
-            st.metric("Topic proba", "{:.3f}".format(Theme_extraction(article)["Topic proba"]))
+    with tab2 :
+        st.header("Theme extraction from article")
+    
+        # Predict topic from an article :
+        article = st.text_area(label='Wikipedia article to analyze', value="Wikipedia article", height=20)
+        if article is not None :
+            if st.button('Find topic'):
+                st.metric("Topic", Theme_extraction(article)["Topic"])
+                st.metric("Topic proba", "{:.3f}".format(Theme_extraction(article)["Topic proba"]))
+    
 
 # __name__ :
 if __name__ == '__main__' :
