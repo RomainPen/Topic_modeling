@@ -14,7 +14,7 @@ from io import StringIO
 import re
 #import string
 from operator import itemgetter
-#import gensim
+import gensim
 
 import nltk
 nltk.download('stopwords')
