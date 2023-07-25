@@ -249,9 +249,9 @@ def main():
             random.shuffle(colors)
             # Plot the histogram using Matplotlib
             plt.bar(topic_count.index, topic_count['count'], color=colors, width=0.7)
-            plt.xlabel('Topics')
-            plt.ylabel('Number of articles')
-            plt.title('Number of articles for each topic')
+            plt.xlabel('Topics', fontsize=14)
+            plt.ylabel('Number of articles', fontsize=14)
+            plt.title('Number of articles for each topic', fontsize=14)
             plt.xticks(rotation=50, ha='right') 
             plt.show()
             st.pyplot(fig)
