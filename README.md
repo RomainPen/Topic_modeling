@@ -1,7 +1,7 @@
 # Topic_modeling
 
 ## Link of API :
-https://apppy-jvg4t8jo9v.streamlit.app/
+https://apppy-i876qq3zt.streamlit.app/
 
 
 ## Part 1 :
