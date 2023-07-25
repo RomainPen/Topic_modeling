@@ -4,6 +4,8 @@ pandas
 pickle5
 datetime
 matplotlib
+seaborn
+random
 regex
 nltk
 operators

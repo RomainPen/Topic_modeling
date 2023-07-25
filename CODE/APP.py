@@ -3,8 +3,10 @@ from PIL import Image
 from datetime import datetime, timedelta
 
 import pandas as pd
-#import matplotlib.pyplot as plt
-import pickle
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random
+#import pickle
 import joblib
 import os
 from io import StringIO
@@ -228,17 +230,32 @@ def main():
                 st.write("This column doesn't exist")
             
             # Analyse the result of the clustering
-            nb_of_article = pd.DataFrame(df_corpus_test['topic'].value_counts()).rename(columns={"topic": "nb_of_article"})
-            st.dataframe(nb_of_article)
-            
+            topic_count = pd.DataFrame(df_corpus_test['topic'].value_counts()).rename(columns={"topic": "nb_of_article"})
+            st.dataframe(topic_count)
+    
             #download dat as csv :
-            csv = convert_df(nb_of_article)
+            csv = convert_df(topic_count)
             st.download_button(
                 label="Download data as CSV",
                 data=csv,
                 file_name='topic_analysis.csv',
                 mime='text/csv')
         
+            # histogram of output :
+            fig, ax = plt.subplots(figsize=(15, 8))
+            n_bars = len(topic_count)
+            colors = sns.color_palette('husl', n_bars)
+            # Shuffle the color list randomly for added randomness
+            random.shuffle(colors)
+            # Plot the histogram using Matplotlib
+            plt.bar(topic_count.index, topic_count['nb_of_article'], color=colors, width=0.7)
+            plt.xlabel('Topics')
+            plt.ylabel('Number of articles')
+            plt.title('Number of articles for each topic')
+            plt.xticks(rotation=50, ha='right') 
+            plt.show()
+            st.pyplot(fig)
+
     with tab2 :
         st.header("Theme extraction from article")
     
