@@ -10,11 +10,17 @@ import os
 from io import StringIO
 
 import re
-from nltk.corpus import stopwords
-from nltk.stem.wordnet import WordNetLemmatizer
 #import string
 from operator import itemgetter
 import gensim
+
+import nltk
+nltk.download('stopwords')
+nltk.download('wordnet')
+#nltk.download('omw-1.4')
+#nltk.download('punkt')
+from nltk.corpus import stopwords
+from nltk.stem.wordnet import WordNetLemmatizer
 
 
 # Load the model :
