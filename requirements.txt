@@ -6,5 +6,5 @@ datetime
 matplotlib
 regex
 nltk
-string
+strings
 operator
