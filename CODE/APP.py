@@ -14,6 +14,7 @@ from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 #import string
 from operator import itemgetter
+import gensim
 
 
 # Load the model :
