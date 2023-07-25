@@ -5,7 +5,7 @@ pickle5
 datetime
 matplotlib
 seaborn
-random
+random2
 regex
 nltk
 operators
