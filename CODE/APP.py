@@ -204,14 +204,15 @@ def Theme_extraction(article) :
             "Topic proba" : round(cluster_similar_documents(article)[1], 3)}
 
 
+# Title :
+st.title('Topic modeling :')
+
+# Image :
+st.image(image, caption='Topic modeling schema')
+
+tab1, tab2= st.tabs(["Dataset clusturing and theme analysis", "Theme extraction"])
+
 def main():
-    # Title :
-    st.title('Topic modeling :')
-    
-    # Image :
-    st.image(image, caption='Topic modeling schema')
-    
-    tab1, tab2= st.tabs(["Dataset clusturing and theme analysis", "Theme extraction"])
     
     with tab1 :
         st.header("Dataset clusturing and theme analysis")
